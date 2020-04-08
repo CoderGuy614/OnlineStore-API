@@ -1,5 +1,5 @@
 {
-  "name": "b-05-team-02-api",
+  "name": "CamboCraft API",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tortugacoders/b-05-team-02-api.git"
+    "url": "git+https://github.com/CoderGuy614/CamboCraft-API.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tortugacoders/b-05-team-02-api/issues"
+    "url": "https://github.com/CoderGuy614/CamboCraft-API/issues"
   },
-  "homepage": "https://github.com/tortugacoders/b-05-team-02-api#readme",
+  "homepage": "https://github.com/CoderGuy614/CamboCraft-API#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
