@@ -22,6 +22,8 @@ app.use(cors());
 
 app.use("/products", require("./controllers/products.js"));
 app.use("/categories", require("./controllers/categories.js"));
+app.use("/users", require("./controllers/users"));
+app.use("/auth", require("./controllers/auth"));
 
 // Start
 
