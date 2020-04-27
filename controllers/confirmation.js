@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 
 router.post("/", (req, res) => {
   const data = req.body;
+  console.log(data);
 
   const smtpTransport = nodemailer.createTransport({
     service: "Gmail",
@@ -16,16 +17,7 @@ router.post("/", (req, res) => {
       pass: "CamboCraft69",
     },
   });
-
-  //   const items = data.cartProducts.map((obj) => obj.name);
-
-  //   const cartIds = data.cartProducts.map((obj) => obj._id);
-
   const numOfItems = data.filteredOptions.length;
-
-  //   const yesItems = cartIds.filter((id) => yesIds.includes(id));
-
-  //   console.log(yesItems);
 
   const mailOptionsCustomer = {
     from: "CamboCraftClothing@gmail.com",
@@ -33,7 +25,6 @@ router.post("/", (req, res) => {
     subject: "CamboCraft Clothing -- ORDER CONFIRMATION --",
     html: `<h4> Hello ${data.name}!</h4>
         <p>Thank you for your order!  We have received your information and will contact you to arrange a convenient delivery.</p>
-        <h4>Your Order includes ${numOfItems} Items </h4>
         <h4>Your Order Total is ${data.totalPrice}</h4>
 
         <h4> Your Contact Information </p>
@@ -42,7 +33,9 @@ router.post("/", (req, res) => {
         <p> Phone: ${data.phone}</p>
         <p> Location: ${data.location}</p>
         <p> Message: ${data.message}</p>
-        
+        <h4> Your order contains ${numOfItems} items </h4>
+        <h4> Total Price: ${data.totalPrice}</h4>
+        <p>${data.filteredOptions[0].item} ${data.filteredOptions[0].name} ${data.filteredOptions[0].price} </p>
         
         `,
   };
@@ -56,6 +49,8 @@ router.post("/", (req, res) => {
     <h4> Customer Phone: ${data.phone}</h4>
     <h4> Customer Location: ${data.location}</h4>
     <h4> Customer Message: ${data.message}</h4>
+    <h4> Total Price: ${data.totalPrice}</h4>
+    <p>${data.filteredOptions[0].item} ${data.filteredOptions[0].name} ${data.filteredOptions[0].price} </p>
     `,
   };
 
