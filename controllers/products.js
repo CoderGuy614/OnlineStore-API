@@ -1,9 +1,5 @@
-//Get models here.
-//Categories
-//products
 const categories = require("../models/categories");
 const products = require("../models/products");
-// const options = require("../models/options");
 const router = require("express").Router();
 
 const getMinPrice = (options) => {
