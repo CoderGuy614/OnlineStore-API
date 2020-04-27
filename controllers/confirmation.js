@@ -17,16 +17,50 @@ router.post("/", (req, res) => {
     },
   });
 
-  const mailOptions = {
+  const mailOptionsCustomer = {
     from: "CamboCraftClothing@gmail.com",
-    to: "jlutz.110@gmail.com",
-    subject: "CamboCraft -- NEW ORDER RECEIVED --",
-    html: `<p>${data.name}</p>
-                <p>${data.email}</p>
-                <p>${data.message}</p>`,
+    to: data.email,
+    subject: "CamboCraft Clothing -- ORDER CONFIRMATION --",
+    html: `<h4> Hello ${data.name}!</h4>
+        <p>Thank you for your order!  We have received your information and will contact you to arrange a convenient delivery.</p>`,
   };
 
-  smtpTransport.sendMail(mailOptions, (error, response) => {
+  const items = data.cartProducts.map(
+    (obj, index) =>
+      obj.name +
+      " " +
+      data.filteredOptions[index].name +
+      " " +
+      "$ " +
+      data.filteredOptions[index].price
+  );
+
+  const mailOptionsSeller = {
+    from: "CamboCraftClothing@gmail.com",
+    to: "cambocraftclothing@gmail.com",
+    subject: "NEW ORDER RECEIVED",
+    html: `<h4> Customer Name: ${data.name}!</h4>
+    <h4> Customer Email: ${data.email}!</h4>
+    <h4> Customer Phone: ${data.phone}!</h4>
+    <h4> Customer Location: ${data.location}!</h4>
+    <h4> Customer Message: ${data.message}!</h4>
+    <h4> Order Items </h4>
+    <ul> 
+    ${items.map((item) => `<li> ${item} </li>`)}
+    </ul>
+    `,
+  };
+
+  smtpTransport.sendMail(mailOptionsCustomer, (error, response) => {
+    if (error) {
+      res.send(error);
+    } else {
+      res.send("Success");
+    }
+    smtpTransport.close();
+  });
+
+  smtpTransport.sendMail(mailOptionsSeller, (error, response) => {
     if (error) {
       res.send(error);
     } else {
