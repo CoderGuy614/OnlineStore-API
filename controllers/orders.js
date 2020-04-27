@@ -41,6 +41,7 @@ router.post(
       message,
       cartProducts,
       filteredOptions,
+      totalPrice,
     } = req.body;
 
     try {
@@ -52,14 +53,13 @@ router.post(
         message,
         cartProducts,
         filteredOptions,
+        totalPrice,
       });
       res.json(newOrder);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");
     }
-
-    // orders.create().then((data) => console.log(data));
   }
 );
 module.exports = router;

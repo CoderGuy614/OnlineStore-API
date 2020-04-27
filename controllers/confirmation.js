@@ -17,7 +17,15 @@ router.post("/", (req, res) => {
     },
   });
 
-  const items = data.cartProducts.map((obj) => obj.name);
+  //   const items = data.cartProducts.map((obj) => obj.name);
+
+  //   const cartIds = data.cartProducts.map((obj) => obj._id);
+
+  const numOfItems = data.filteredOptions.length;
+
+  //   const yesItems = cartIds.filter((id) => yesIds.includes(id));
+
+  //   console.log(yesItems);
 
   const mailOptionsCustomer = {
     from: "CamboCraftClothing@gmail.com",
@@ -25,14 +33,8 @@ router.post("/", (req, res) => {
     subject: "CamboCraft Clothing -- ORDER CONFIRMATION --",
     html: `<h4> Hello ${data.name}!</h4>
         <p>Thank you for your order!  We have received your information and will contact you to arrange a convenient delivery.</p>
-        <h4>Your Order Items </h4>
-        <ul> 
-        ${items.map((item, index) => `<li> ${item} </li>`)}
-        </ul>
-        
-            <p>${data.filteredOptions.map(
-              (obj) => obj.name + " " + obj.price
-            )}</p>
+        <h4>Your Order includes ${numOfItems} Items </h4>
+        <h4>Your Order Total is ${data.totalPrice}</h4>
 
         <h4> Your Contact Information </p>
         <p> Name: ${data.name} </p>
@@ -54,10 +56,6 @@ router.post("/", (req, res) => {
     <h4> Customer Phone: ${data.phone}</h4>
     <h4> Customer Location: ${data.location}</h4>
     <h4> Customer Message: ${data.message}</h4>
-    <h4> Order Items </h4>
-    <ul> 
-    ${items.map((item) => `<li> ${item} </li>`)}
-    </ul>
     `,
   };
 

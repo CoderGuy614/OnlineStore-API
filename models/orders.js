@@ -29,4 +29,8 @@ module.exports = mongoose.model("orders", {
     type: Array,
     required: [true, "options are required"],
   },
+  totalPrice: {
+    type: Number,
+    required: [false],
+  },
 });
