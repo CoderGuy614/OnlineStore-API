@@ -15,6 +15,7 @@ router.post(
   [
     check("name", "Name is required").not().isEmpty(),
     check("email", "Please enter a valid email address").isEmail(),
+    check("phone", "Please enter a valid phone number ").not().isEmpty(),
     check(
       "location",
       "Please enter a delivery location, i.e. hotel name and room number"
