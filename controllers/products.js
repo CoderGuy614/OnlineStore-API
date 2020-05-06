@@ -1,4 +1,3 @@
-const categories = require("../models/categories");
 const products = require("../models/products");
 const router = require("express").Router();
 
@@ -13,7 +12,6 @@ const getMinPrice = (options) => {
 router.get("/", (req, res) => {
   products
     .find({})
-    .populate("categories")
     .lean()
     .then((data) => {
       data.forEach((product) => {
@@ -26,7 +24,6 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   products
     .findById(req.params.id)
-    .populate("categories")
     .lean()
     .then((dat) => res.send(dat));
 });
