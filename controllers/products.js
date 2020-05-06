@@ -13,6 +13,7 @@ const getMinPrice = (options) => {
 router.get("/", (req, res) => {
   products
     .find({})
+    .populate("categories")
     .lean()
     .then((data) => {
       data.forEach((product) => {
